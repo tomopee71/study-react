@@ -33,10 +33,15 @@
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
 }
-
+.title {
+  font-size: 3rem;
+  text-transform: capitalize;
+}
 .code {
   font-weight: 700;
   font-family: var(--font-mono);
+  font-style: italic;
+  color: crimson;
 }
 
 .grid {
