@@ -35,7 +35,8 @@ export function Links() {
     <div className={styles.grid}>
       {ITEMS.map((item) => {
         return (
-          <a key={item.href}
+          <a
+            key={item.href}
             href={item.href}
             className={styles.card}
             target="_blank"

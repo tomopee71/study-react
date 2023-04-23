@@ -4,14 +4,18 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { Main } from "../components/Main";
 import { Header } from "../components/Header";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+ 
+  const foo = 1;
+  // useCallbackを使用してコンポーネント内部にメゾットを記述するとコンポーネントがレンダリングされたとき、一緒に再レンダリングされないためパフォーマンスがよくなる
   const handleClick = useCallback((e) => {
     console.log(e.target.href);
     e.preventDefault();
+    alert(foo);
   },[]);
 
   return (
@@ -23,7 +27,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <a href="/about" onClick={handleClick}>
+      <a
+        href="/about"
+        onClick={handleClick}
+      >
         ボタン
       </a>
       <Main page="index" />
