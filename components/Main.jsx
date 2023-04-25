@@ -10,14 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export function Main(props) {
 
-  useEffect(()=> {
-    console.log("マウント時");
-    document.body.style.backgroundColor = "lightblue";
-    return () => {
-    console.log("アンマウント時");
-    document.body.style.backgroundColor = "";
-    };
-  },[]);
+
+
 
   return (
     <main className={styles.main}>
