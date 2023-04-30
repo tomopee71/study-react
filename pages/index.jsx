@@ -4,32 +4,26 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { Main } from "../components/Main";
 import { Header } from "../components/Header";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const foo = 1;
-  // useCallbackを使用してコンポーネント内部にメゾットを記述するとコンポーネントがレンダリングされたとき、一緒に再レンダリングされないためパフォーマンスがよくなる
-  const handleClick = useCallback((e) => {
-    console.log(e.target.href);
-    // preventDefault メソッドを使用することで、イベントが発生したときにイベントに対してブラウザで設定されているデフォルトの動作をキャンセルさせることができます。
-    e.preventDefault();
-    alert(foo);
-  }, []);
+  const [count, setCount] = useState(1);
+  const handleClick = (e) => {
+    setCount((count) => count + 1);
+    setCount((count) => count + 1);
+  };
+
   //Homeコンポーネントがマウントされるとき処理される
-  useEffect(() => {
-    // マウント時の処理
-    document.body.style.backgroundColor = "lightblue";
-    console.log("マウント時");
-    // アンマウント時の処理
-    return () => {
-      document.body.style.backgroundColor = "";
-      console.log("アンマウント時");
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.body.style.backgroundColor = "lightblue";
+  //   return () => {
+  //     document.body.style.backgroundColor = "";
+  //   };
+  // }, []);
+
+  console.log(count);
 
   return (
     <>
@@ -40,9 +34,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Link href="/about" onClick={handleClick}>
-        ボタン
-      </Link>
+      <h1>{count}</h1>
+      <button onClick={handleClick}>ボタン</button>
       <Main page="index" />
     </>
   );
