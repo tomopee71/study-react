@@ -10,6 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [count, setCount] = useState(1);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
 
   const handleClick = useCallback(
     (e) => {
@@ -22,6 +24,18 @@ export default function Home() {
     [count]
   );
 
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert("5文字以内にして下さい");
+      return;
+    }
+    setText(e.target.value.trim());
+  }, []);
+
+  const handleDiplay = useCallback(() => {
+    setIsShow((isShow) => !isShow);
+  }, []);
+
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
     return () => {
@@ -29,6 +43,10 @@ export default function Home() {
     };
   }, [count]);
 
+
+  
+  console.log(text);
+  
   return (
     <>
       <Head>
@@ -38,8 +56,50 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <h1>{count}</h1>
+      {/* 三項演算子 */}
+      {isShow ? <h1>{count}</h1> : null}
       <button onClick={handleClick}>ボタン</button>
+      <button
+        onClick={handleDiplay}
+        // onClick={() => {
+        //   setIsShow(
+        //     (isShow) => !isShow
+        //     // if(isShow === true){
+        //     //   return false;
+        //     // }else{
+        //     //   return true;
+        //     // }
+
+        //     // if (isShow) {
+        //     //   return false;
+        //     // } else {
+        //     //   return true;
+        //     // }
+
+        //     // if (isShow) {
+        //     //   return false;
+        //     // }
+        //     // return true;
+
+        //     // return isShow ? false : true;
+
+        //     // return !isShow;
+        //   );
+        // }
+      >
+        {isShow ? "非表示" : "表示"}
+      </button>
+      <input
+        type="text"
+        value={text}
+        // onChange={(e) => {
+        //   if (text.length >= 5) {
+        //     return;
+        //   }
+        //   setText(e.target.value);
+        // }}
+        onChange={handleChange}
+      />
       <Main page="index" />
     </>
   );
