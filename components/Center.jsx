@@ -20,6 +20,7 @@ export function Center() {
         <div className={styles.thirteen}>
           <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
         </div>
+        <h1>By Tomopee.com</h1>
       </div>
     </>
   );
